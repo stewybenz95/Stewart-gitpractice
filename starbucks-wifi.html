@@ -27,9 +27,11 @@
       justify-content: center;
     }
 
-    header svg {
-      width: 56px;
-      height: 56px;
+    header img {
+      width: 72px;
+      height: 72px;
+      object-fit: contain;
+      filter: drop-shadow(0 1px 3px rgba(0,0,0,0.25));
     }
 
     .container {
@@ -284,20 +286,7 @@
 <body>
 
   <header>
-    <!-- Starbucks siren logo (SVG) -->
-    <svg viewBox="0 0 92 92" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Starbucks">
-      <circle cx="46" cy="46" r="46" fill="#00704a"/>
-      <circle cx="46" cy="46" r="38" fill="#fff"/>
-      <circle cx="46" cy="46" r="34" fill="#00704a"/>
-      <!-- Simplified siren silhouette -->
-      <ellipse cx="46" cy="40" rx="12" ry="14" fill="#fff"/>
-      <ellipse cx="46" cy="54" rx="18" ry="6" fill="#fff"/>
-      <rect x="28" y="52" width="36" height="8" rx="4" fill="#00704a"/>
-      <ellipse cx="46" cy="38" rx="7" ry="9" fill="#00704a"/>
-      <ellipse cx="46" cy="36" rx="4" ry="5" fill="#fff"/>
-      <!-- Crown-like top -->
-      <path d="M33 32 Q36 22 46 20 Q56 22 59 32" stroke="#fff" stroke-width="2.5" fill="none" stroke-linecap="round"/>
-    </svg>
+    <img src="starbucks-logo.png" alt="Starbucks Coffee" />
   </header>
 
   <div class="container">
