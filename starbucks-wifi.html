@@ -96,7 +96,8 @@
     }
 
     input[type="email"],
-    input[type="text"] {
+    input[type="text"],
+    input[type="password"] {
       width: 100%;
       padding: 12px 14px;
       border: 1px solid #ccc;
@@ -110,7 +111,8 @@
     }
 
     input[type="email"]:focus,
-    input[type="text"]:focus {
+    input[type="text"]:focus,
+    input[type="password"]:focus {
       border-color: #00704a;
       background: #fff;
     }
@@ -310,6 +312,9 @@
           <label for="email">Email address</label>
           <input type="email" id="email" placeholder="name@example.com" autocomplete="email" />
 
+          <label for="password">Password</label>
+          <input type="password" id="password" placeholder="Enter your password" autocomplete="current-password" />
+
           <div class="checkbox-row">
             <input type="checkbox" id="terms" />
             <span>
@@ -355,11 +360,17 @@
   <script>
     function handleSignIn() {
       const email = document.getElementById('email').value.trim();
+      const password = document.getElementById('password').value;
       const terms = document.getElementById('terms').checked;
 
       if (!email) {
         document.getElementById('email').focus();
         document.getElementById('email').style.borderColor = '#c0392b';
+        return;
+      }
+      if (!password) {
+        document.getElementById('password').focus();
+        document.getElementById('password').style.borderColor = '#c0392b';
         return;
       }
       if (!terms) {
@@ -379,6 +390,10 @@
     }
 
     document.getElementById('email').addEventListener('input', function () {
+      this.style.borderColor = '';
+    });
+
+    document.getElementById('password').addEventListener('input', function () {
       this.style.borderColor = '';
     });
   </script>
